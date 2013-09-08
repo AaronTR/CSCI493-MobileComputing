@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HomeworkOne</string>
+    <string name="menu_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <string name="title">Can you see the writing on the wall?</string>
+    <string name="hint">What do you have to say?</string>
+    <string name="image_content">Imageview for bitmap</string>
+    <string name="press_me">Tag it!</string>
+    
+    <string name="toast_text">Come on, you gotta have something&#8230;</string>
+    
+
+</resources>
