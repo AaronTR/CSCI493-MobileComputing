@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			if(editText.getText().toString() != "") {
+			if(editText.getText().toString() != "" && editText.getText().toString() != null) {
 				updateBitmapFromEditText(editText);
 				editText.setText("");
 			}
@@ -78,9 +78,9 @@ public class MainActivity extends Activity {
 		if(android.os.Build.VERSION.SDK_INT >= 13) { 
 			Point size = new Point();
 			display.getSize(size);
-			return size;
+			return new Point(size.x - 10, size.y/2);
 		}
-		int width = (int)(display.getWidth()/2);
+		int width = (int)(display.getWidth() - 10);
 		int height = (int)(display.getHeight()/2);
 		return new Point(width, height);
 	}

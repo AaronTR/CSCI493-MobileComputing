@@ -32,6 +32,5 @@ public class BitmapBuilder {
 		int halfText = (int) (paint.measureText(text)/2);
 		return bm.getWidth() / 2 - halfText;
 	}
-
 	
 }
