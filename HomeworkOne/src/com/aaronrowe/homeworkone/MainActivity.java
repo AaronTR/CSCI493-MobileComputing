@@ -1,10 +1,13 @@
 package com.aaronrowe.homeworkone;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,9 +16,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-
-	public static final int BITMAP_WIDTH = 300;
-	public static final int BITMAP_HEIGHT = 300;
 	
 	private Button button;
 	private EditText editText;
@@ -33,8 +33,9 @@ public class MainActivity extends Activity {
 		editText = (EditText) findViewById(R.id.user_input);
 		imageView = (ImageView) findViewById(R.id.image);
 		
-		builder = new BitmapBuilder(createSimpleTextOptions());
-		bitmap = builder.buildBitmap(getString(R.string.app_name), BITMAP_WIDTH, BITMAP_HEIGHT);
+		Point size = calculateBitmapDimensions();
+		builder = new BitmapBuilder(createSimpleTextOptions(), size.x, size.y);
+		bitmap = builder.buildBitmap(getString(R.string.app_name));
 		imageView.setImageBitmap(bitmap);
 		
 		button.setOnClickListener(clickListener);
@@ -57,7 +58,7 @@ public class MainActivity extends Activity {
 	
 	private Paint createSimpleTextOptions() {
 		Paint paint = new Paint();
-		paint.setTextSize(20);
+		paint.setTextSize(25);
 		paint.setColor(Color.WHITE);
 		paint.setAlpha(200);
 		paint.setTextAlign(Paint.Align.LEFT);
@@ -71,8 +72,17 @@ public class MainActivity extends Activity {
 		imageView.setImageBitmap(redrawn);
 	}
 	
-	private void calculateBitmapSize() {
-		//TODO adjust bitmap size to device params
+	@SuppressLint("NewApi")
+	private Point calculateBitmapDimensions() {
+		Display display = this.getWindowManager().getDefaultDisplay();
+		if(android.os.Build.VERSION.SDK_INT >= 13) { 
+			Point size = new Point();
+			display.getSize(size);
+			return size;
+		}
+		int width = (int)(display.getWidth()/2);
+		int height = (int)(display.getHeight()/2);
+		return new Point(width, height);
 	}
 
 }

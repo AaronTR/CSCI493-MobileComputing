@@ -21,8 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:minHeight="300dp"
-        android:minWidth="300dp"
         android:src="@drawable/ic_launcher"
         android:contentDescription="@string/image_content"/>
     

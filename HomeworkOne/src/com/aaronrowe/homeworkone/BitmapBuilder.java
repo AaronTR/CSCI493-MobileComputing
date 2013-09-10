@@ -6,18 +6,17 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 
 public class BitmapBuilder {
-
-	public static final int TEXT_SIZE = 10;
-	public static final int CANVAS_X = 5;
-	public static final int CANVAS_Y = 5;
 	
 	private Paint paint;
+	private int width, height;
 	
-	public BitmapBuilder(Paint p) {
+	public BitmapBuilder(Paint p, int width, int height) {
 		this.paint = p;
+		this.width = width;
+		this.height = height;
 	}
 	
-	public Bitmap buildBitmap(String text, int width, int height) {
+	public Bitmap buildBitmap(String text) {
 		Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 		return drawBitmap(text, bitmap);
 	}
@@ -25,7 +24,7 @@ public class BitmapBuilder {
 	public Bitmap drawBitmap(String text, Bitmap bitmap) {
 		Canvas canvas = new Canvas(bitmap);
 		canvas.drawColor(0, Mode.CLEAR);
-		canvas.drawText(text, getRealignedX(bitmap, text), MainActivity.BITMAP_HEIGHT/2, this.paint);
+		canvas.drawText(text, getRealignedX(bitmap, text), height/2, this.paint);
 		return bitmap;
 	} 
 	
@@ -33,8 +32,6 @@ public class BitmapBuilder {
 		int halfText = (int) (paint.measureText(text)/2);
 		return bm.getWidth() / 2 - halfText;
 	}
+
 	
-	private void formatTextToFit() {
-		//TODO wrap larger text to fill bitmap
-	}
 }
