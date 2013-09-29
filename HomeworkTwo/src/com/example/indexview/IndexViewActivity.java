@@ -31,7 +31,7 @@ public class IndexViewActivity extends FragmentActivity
     public void viewChanged(String message) {
         ViewFragment fragment = (ViewFragment) getSupportFragmentManager().findFragmentById(R.id.viewFragment);
         if (fragment != null && fragment.isInLayout()) {
-            fragment.updateText(message);
+            fragment.updateImage(message);
         }     	
     }    
     

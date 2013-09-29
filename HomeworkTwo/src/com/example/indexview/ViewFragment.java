@@ -1,12 +1,13 @@
 package com.example.indexview;
 
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 public class ViewFragment extends Fragment {
 
@@ -17,8 +18,16 @@ public class ViewFragment extends Fragment {
     return view;
   }
   
-  public void updateText(String message) {
-	TextView view = (TextView) getView().findViewById(R.id.viewText);
-	view.setText(message);
+  //TODO save instance state
+  
+  public void updateImage(String absolutePath) {
+	  ImageView view = (ImageView) getView().findViewById(R.id.viewImage);
+	if(absolutePath != null) { 
+		Drawable drawable = Drawable.createFromPath(absolutePath);
+		view.setImageDrawable(drawable);
+	}
+	else {
+		view.setImageResource(R.drawable.ic_launcher);
+	}
   }
 } 
