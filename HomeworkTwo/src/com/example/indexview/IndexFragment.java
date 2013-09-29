@@ -6,6 +6,7 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,13 @@ public class IndexFragment extends ListFragment{
 	  String listItem = getListAdapter().getItem(position).toString();
 	  updateView(fileMap.get(listItem));
 	  
+	  ViewFragment viewFragment = (ViewFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.viewFragment);
+	  if(!viewFragment.isVisible()) {
+		  FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		  transaction.hide(this);
+		  transaction.show(viewFragment);
+		  transaction.commit();
+	  }
   }
   
   @Override

@@ -20,6 +20,10 @@ public class ViewFragment extends Fragment {
   
   //TODO save instance state
   
+  //TODO scrollbar
+  
+  //TODO zoom
+  
   public void updateImage(String absolutePath) {
 	  ImageView view = (ImageView) getView().findViewById(R.id.viewImage);
 	if(absolutePath != null) { 
