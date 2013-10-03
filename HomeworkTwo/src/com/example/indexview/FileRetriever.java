@@ -2,6 +2,7 @@ package com.example.indexview;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import android.util.Log;
@@ -20,4 +21,5 @@ public class FileRetriever {
 		}
 		return fileMap;
 	}
+	
 }

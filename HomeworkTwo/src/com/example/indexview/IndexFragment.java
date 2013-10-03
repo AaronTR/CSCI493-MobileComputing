@@ -18,7 +18,7 @@ public class IndexFragment extends ListFragment{
   
 	ViewChangedListener listener;
 	HashMap<String, String> fileMap;
-	
+
   public interface ViewChangedListener {
 	public void viewChanged(String message);
   }
@@ -26,13 +26,13 @@ public class IndexFragment extends ListFragment{
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-	 
-	  
+
+
 	File cameraDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM + File.separator + "Camera");
 	FileRetriever fr = new FileRetriever();
 	String[] extensions = {"txt", "jpg"};
 	fileMap = fr.retrieve(cameraDir, extensions);
-	
+
 	String[] nameList = new String[1];
 	if(!fileMap.isEmpty()) {
 		nameList = fileMap.keySet().toArray(new String[0]);
@@ -40,10 +40,10 @@ public class IndexFragment extends ListFragment{
 	else {
 		nameList[0] = "No files found";
 	}
-	
+
 	ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, nameList);
 	setListAdapter(adapter);
-	
+
     View view = inflater.inflate(R.layout.index_fragment, container, false);
     
     return view;
@@ -53,7 +53,7 @@ public class IndexFragment extends ListFragment{
   public void onListItemClick(ListView lv, View v, int position, long id) {
 	  String listItem = getListAdapter().getItem(position).toString();
 	  updateView(fileMap.get(listItem));
-	  
+
 	  ViewFragment viewFragment = (ViewFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.viewFragment);
 	  if(!viewFragment.isVisible()) {
 		  FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
