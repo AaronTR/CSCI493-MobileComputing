@@ -1,12 +1,16 @@
 package com.example.indexview;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
 
 public class IndexViewActivity extends FragmentActivity 
 	implements IndexFragment.ViewChangedListener {
@@ -24,8 +28,21 @@ public class IndexViewActivity extends FragmentActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.index_view, menu);
+    	menu.add("Swap Fragments");
+        super.onCreateOptionsMenu(menu);
         return true;
+    }
+    
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	IndexFragment indexFragment = (IndexFragment) getSupportFragmentManager().findFragmentById(R.id.indexFragment);        
+        ViewFragment viewFragment = (ViewFragment) getSupportFragmentManager().findFragmentById(R.id.viewFragment);
+        
+    	if(indexFragment.isVisible() && viewFragment.isVisible()) {
+    		//swapFragments(indexFragment, viewFragment);
+    	}
+    	return true;
     }
 
     public void viewChanged(String message) {

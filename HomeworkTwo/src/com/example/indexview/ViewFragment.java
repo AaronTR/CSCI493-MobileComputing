@@ -63,7 +63,7 @@ public class ViewFragment extends Fragment {
 		  catch (FileNotFoundException fne) {
 			  builder.append("File not found");
 		  } 
-		  catch (IOException e) {
+		  catch (Exception e) {
 			  builder.append("Could not read file");
 		  }
 	  }
