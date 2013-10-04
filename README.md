@@ -2,8 +2,11 @@ CSCI493-MobileComputing
 =======================
 
 Midterm:
+  
   Take & view photos
-  3 main view:
+  
+  3 main views:
+    
     view finder to take pictures
     thumbnail view of photos
     Photo view
@@ -12,6 +15,7 @@ Midterm:
       - text
       
   backend:
+  
     sqlite
       - name
       - description
