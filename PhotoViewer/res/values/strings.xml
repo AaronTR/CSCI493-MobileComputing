@@ -8,5 +8,8 @@
     <string name="image_test">Image</string>
     <string name="view_finder_test">View Finder</string>
     <string name="album_test">Album</string>
+    <string name="location_test">Location</string>
+    
+    <string name="location_button">button</string>
 
 </resources>

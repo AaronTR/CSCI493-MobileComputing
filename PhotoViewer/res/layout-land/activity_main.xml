@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <fragment android:name="com.example.photoviewer.AlbumFragment"
+        android:id="@+id/albumFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </fragment>
+
+    <fragment android:name="com.example.photoviewer.ImageFragment"
+        android:id="@+id/imageFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+	</fragment>
+	
+    <fragment android:name="com.example.photoviewer.ViewFinderFragment"
+        android:id="@+id/viewFinderFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </fragment>
+
+    <fragment android:name="com.example.photoviewer.DescriptionFragment"
+        android:id="@+id/descriptionFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+	</fragment>
+
+</LinearLayout>

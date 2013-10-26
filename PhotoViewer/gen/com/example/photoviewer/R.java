@@ -14,13 +14,18 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int menu_settings=0x7f070000;
+        public static final int albumFragment=0x7f070000;
+        public static final int descriptionFragment=0x7f070003;
+        public static final int imageFragment=0x7f070001;
+        public static final int menu_settings=0x7f070004;
+        public static final int viewFinderFragment=0x7f070002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int fragment_album=0x7f030001;
         public static final int fragment_image=0x7f030002;
-        public static final int fragment_view_finder=0x7f030003;
+        public static final int fragment_location=0x7f030003;
+        public static final int fragment_view_finder=0x7f030004;
     }
     public static final class menu {
         public static final int activity_main=0x7f060000;
@@ -30,6 +35,8 @@ public final class R {
         public static final int app_name=0x7f040000;
         public static final int hello_world=0x7f040002;
         public static final int image_test=0x7f040003;
+        public static final int location_button=0x7f040007;
+        public static final int location_test=0x7f040006;
         public static final int menu_settings=0x7f040001;
         public static final int view_finder_test=0x7f040004;
     }
