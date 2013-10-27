@@ -2,6 +2,7 @@ package com.example.photoviewer;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -52,6 +53,15 @@ public class ImageDBHelper extends SQLiteOpenHelper {
 		
 		//returns row or -1
 		return getWritableDatabase().insert(ImageEntry.TABLE_NAME, null, values);
+	}
+	
+	public boolean deleteImage(String uri) {
+		return getWritableDatabase().delete(ImageEntry.TABLE_NAME, ImageEntry.COLUMN_NAME_URI + "=?" , new String[] {uri}) > 0;
+	}
+	
+	public Cursor retrieveURIs() {
+		String query = "select " + ImageEntry.COLUMN_NAME_URI + " from " + ImageEntry.TABLE_NAME;
+		return getReadableDatabase().rawQuery(query, null);
 	}
 
 }
