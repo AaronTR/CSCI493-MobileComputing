@@ -1,5 +1,6 @@
 package com.example.photoviewer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -7,6 +8,7 @@ import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MotionEvent;
+import android.widget.ImageButton;
 
 public class MainActivity extends FragmentActivity implements AlbumFragment.ViewChangedListener{
 
@@ -17,7 +19,11 @@ public class MainActivity extends FragmentActivity implements AlbumFragment.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_view_finder);
         gestureDetector = new GestureDetectorCompat(this, new GestureListener());
-
+        ViewFinderFragment view = new ViewFinderFragment();
+        //view.startActivity(getIntent());
+        
+        
+        
     }
 
 	@Override
@@ -41,5 +47,5 @@ public class MainActivity extends FragmentActivity implements AlbumFragment.View
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }

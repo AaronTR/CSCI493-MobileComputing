@@ -11,5 +11,6 @@
     <string name="location_test">Location</string>
     
     <string name="location_button">button</string>
+    <string name="snap">snapPic!</string>
 
 </resources>
