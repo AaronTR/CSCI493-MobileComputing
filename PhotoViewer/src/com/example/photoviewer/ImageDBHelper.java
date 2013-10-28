@@ -43,7 +43,7 @@ public class ImageDBHelper extends SQLiteOpenHelper {
         onCreate(db);
 	}
 	
-	public long insertImage(Image image) {
+	public boolean insertImage(Image image) {
 		ContentValues values = new ContentValues();
 		//replace with values from image object
 		values.put(ImageEntry.COLUMN_NAME_URI, image.getURIAsString());
@@ -51,12 +51,24 @@ public class ImageDBHelper extends SQLiteOpenHelper {
 		values.put(ImageEntry.COLUMN_NAME_COORDINATES, image.getLocation());
 		values.put(ImageEntry.COLUMN_NAME_TIMESTAMP, image.getTimestampAsString());
 		
-		//returns row or -1
-		return getWritableDatabase().insert(ImageEntry.TABLE_NAME, null, values);
+		return getWritableDatabase().insert(ImageEntry.TABLE_NAME, null, values) > -1;
 	}
 	
 	public boolean deleteImage(String uri) {
 		return getWritableDatabase().delete(ImageEntry.TABLE_NAME, ImageEntry.COLUMN_NAME_URI + "=?" , new String[] {uri}) > 0;
+	}
+	
+	public boolean updateImageDescription(String uri, String description) {
+		ContentValues values = new ContentValues();
+		values.put(ImageEntry.COLUMN_NAME_DESCRIPTION, description);
+		return getWritableDatabase().update(ImageEntry.TABLE_NAME, values, 
+				ImageEntry.COLUMN_NAME_URI + "=?", new String[]{uri}) > 0;
+	}
+	
+	public Cursor retrieveImage(String uri) {
+		String query = "select * from " + ImageEntry.TABLE_NAME + " where " + ImageEntry.COLUMN_NAME_URI + 
+				" = " + uri;
+		return getReadableDatabase().rawQuery(query, null);
 	}
 	
 	public Cursor retrieveURIs() {
