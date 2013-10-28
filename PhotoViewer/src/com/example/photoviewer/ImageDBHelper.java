@@ -19,8 +19,7 @@ public class ImageDBHelper extends SQLiteOpenHelper {
 	    ImageEntry.COLUMN_NAME_URI + TEXT_TYPE + COMMA_SEP +
 	    ImageEntry.COLUMN_NAME_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
 	    ImageEntry.COLUMN_NAME_COORDINATES + TEXT_TYPE + COMMA_SEP +
-	    ImageEntry.COLUMN_NAME_TIMESTAMP + TEXT_TYPE + COMMA_SEP +
-	    " )";
+	    ImageEntry.COLUMN_NAME_TIMESTAMP + TEXT_TYPE + " )";
 
 	private static final String SQL_DELETE_ENTRIES =
 	    "DROP TABLE IF EXISTS " + ImageEntry.TABLE_NAME;
