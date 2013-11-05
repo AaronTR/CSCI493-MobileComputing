@@ -1,21 +1,21 @@
 package com.example.photoviewer;
 
 import java.io.File;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -25,7 +25,7 @@ public class AlbumFragment extends Fragment{
 	ImageManager manager;
 	
 	public interface ViewChangedListener {
-		public void viewChanged(String message);
+		public void viewChanged(Image image);
 	}
 	
 	@Override
@@ -37,15 +37,37 @@ public class AlbumFragment extends Fragment{
 	    
 	    //ArrayList<Uri> uris = getTestShit();
 	    addDatabaseShit();
-	    ArrayList<Uri> uris = manager.retrieveURIs();
+	    final ArrayList<Uri> uris = manager.retrieveURIs();
 	    
 	    GridView gridview = (GridView) view.findViewById(R.id.gridview);
 	    gridview.setAdapter(new ImageAdapter(getActivity().getApplicationContext(), uris));
 
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	            Toast.makeText(getActivity(), "hey there " + position, Toast.LENGTH_SHORT).show();
+	        	Image image = null;
+	        	try {
+	        		image = manager.retrieveImageFromDB(uris.get(position).toString());
+	        	}
+	        	catch (ParseException pe) {
+	        		pe.printStackTrace();
+	        	}
+	            updateView(image);
+	            
+	            ImageFragment imageFragment = new ImageFragment();
+		      	if(!imageFragment.isVisible()) {
+		      		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		      		transaction.hide((AlbumFragment)v.getParent());
+		      		transaction.show(imageFragment);
+		      		transaction.commit();
+		      	}
 	        }
+	    });
+	    
+	    gridview.setOnItemLongClickListener(new OnItemLongClickListener() {
+	    	public boolean onItemLongClick(AdapterView<?> parent, View v, int position, long id) {
+	    		Toast.makeText(getActivity(), "delete picture " + position + "?", Toast.LENGTH_SHORT).show();
+				return false;
+	    	}
 	    });
 	    return view;
 	}
@@ -61,8 +83,8 @@ public class AlbumFragment extends Fragment{
 	    }
 	}
 	  
-	public void updateView(String message) {
-		listener.viewChanged(message);
+	public void updateView(Image image) {
+		listener.viewChanged(image);
 	}
 	
 	//testing only

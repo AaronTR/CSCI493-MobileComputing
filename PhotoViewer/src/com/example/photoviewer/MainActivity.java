@@ -32,7 +32,7 @@ public class MainActivity extends FragmentActivity implements AlbumFragment.View
 	}
 
 	@Override
-	public void viewChanged(String message) {
+	public void viewChanged(Image image) {
 		// TODO Auto-generated method stub
 	}
 	

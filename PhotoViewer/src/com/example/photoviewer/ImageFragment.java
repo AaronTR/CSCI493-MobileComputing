@@ -16,5 +16,9 @@ public class ImageFragment extends Fragment{
 	    
 	    return view;
 	}
+	
+	public void updateImage(Image image) {
+		//get stuff
+	}
 
 }
