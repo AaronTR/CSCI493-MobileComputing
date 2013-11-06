@@ -20,6 +20,8 @@ import android.widget.ImageButton;
 public class MainActivity extends SingleFragmentActivity implements AlbumFragment.ViewChangedListener{
 
 	GestureDetector gestureDetector;
+	FragmentManager manager = getSupportFragmentManager();
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,7 @@ public class MainActivity extends SingleFragmentActivity implements AlbumFragmen
 		setContentView(R.layout.activity_main);
 		gestureDetector = new GestureDetector(this, new GestureListener());
 		super.onCreate(savedInstanceState);
-		//FragmentManager manager = getSupportFragmentManager();
-		//Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
+		Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
         
     }
 	  @Override
@@ -60,6 +61,8 @@ public class MainActivity extends SingleFragmentActivity implements AlbumFragmen
 	        
 	        @Override
 	        public void onLongPress(MotionEvent e) {
+	        	ViewFinderFragment view = (ViewFinderFragment) manager.findFragmentById(R.id.view_finder_fragment);
+	        	view.takePicture();
 	            float x = e.getX();
 	            float y = e.getY();
 	            Log.d("Long Tap", "Tapped at: (" + x + "," + y + ")");
@@ -68,10 +71,9 @@ public class MainActivity extends SingleFragmentActivity implements AlbumFragmen
 	        // event when double tap occurs
 	        @Override
 	        public boolean onDoubleTap(MotionEvent e) {
-	                
-	                FragmentManager manager = getSupportFragmentManager();
-	                manager.beginTransaction().replace(R.id.fragmentContainer, new AlbumFragment()).commit();
-	                float x = e.getX();
+	               
+	            manager.beginTransaction().replace(R.id.fragmentContainer, new AlbumFragment()).commit();
+	            float x = e.getX();
 	            float y = e.getY();
 	            Log.d("Double Tap", "Tapped at: (" + x + "," + y + ")");
 

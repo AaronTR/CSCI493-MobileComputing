@@ -21,6 +21,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class ViewFinderFragment extends Fragment {
@@ -36,6 +37,11 @@ public class ViewFinderFragment extends Fragment {
             mProgressContainer.setVisibility(View.VISIBLE);
         }
     };
+    
+    public void takePicture() {
+    	mCamera.takePicture( mShutterCallback, null, mJpegCallBack);
+    }
+    
     private Camera.PictureCallback mJpegCallBack = new Camera.PictureCallback() {
         public void onPictureTaken(byte[] data, Camera camera) {
             // create a filename
@@ -65,6 +71,7 @@ public class ViewFinderFragment extends Fragment {
                     Intent i = new Intent();
                     i.putExtra(EXTRA_PHOTO_FILENAME, filename);
                     getActivity().setResult(Activity.RESULT_OK, i);
+                    Toast.makeText(getActivity().getApplicationContext(), filename, Toast.LENGTH_SHORT).show();
                 } else {
                     getActivity().setResult(Activity.RESULT_CANCELED);
                 }
