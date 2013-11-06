@@ -21,7 +21,7 @@ public class MainActivity extends SingleFragmentActivity implements AlbumFragmen
 
 	GestureDetector gestureDetector;
 	FragmentManager manager = getSupportFragmentManager();
-
+	ViewFinderFragment view = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,8 @@ public class MainActivity extends SingleFragmentActivity implements AlbumFragmen
 	  @Override
 	    protected Fragment createFragment() {
 	            
-	        return new ViewFinderFragment();
+	        view = new ViewFinderFragment();
+	        return view;
 	    }
 	
 	@Override
@@ -61,7 +62,6 @@ public class MainActivity extends SingleFragmentActivity implements AlbumFragmen
 	        
 	        @Override
 	        public void onLongPress(MotionEvent e) {
-	        	ViewFinderFragment view = (ViewFinderFragment) manager.findFragmentById(R.id.view_finder_fragment);
 	        	view.takePicture();
 	            float x = e.getX();
 	            float y = e.getY();
